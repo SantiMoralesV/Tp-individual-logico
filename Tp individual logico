@@ -1,0 +1,23 @@
+vive(agatha).
+vive(charles).
+vive(mayordomo).
+
+agathaOdiaA(Alguien):-
+    vive(Alguien),
+    Alguien \= mayordomo.
+
+odiaA(mayordomo,Alguien):-
+    agathaOdiaA(Alguien).
+odiaA(agatha,Alguien):-
+    agathaOdiaA(Alguien).
+odiaA(charles,Alguien):-
+    vive(Alguien),
+    not(agathaOdiaA(Alguien)).
+
+masRicoQueAgatha(Alguien):-
+    not(odiaA(mayordomo,Alguien)),
+    vive(Alguien).
+
+matoAAgatha(Alguien):-
+    odiaA(Alguien,agatha),
+    not(masRicoQueAgatha(Alguien)).
